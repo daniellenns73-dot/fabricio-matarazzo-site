@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagamento via Pix - Lenns Oliveira</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+      margin: 0;
+    }
+    .pix-box {
+      background-color: #111;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,255,0,0.2);
+      display: inline-block;
+      max-width: 420px;
+      width: 100%;
+      border-top: 6px solid #00ff00;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #00ff00;
+    }
+    h1 {
+      color: #00ff00;
+      margin-bottom: 5px;
+    }
+    .bio {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    h2 {
+      color: #fff;
+      margin-top: 10px;
+    }
+    p {
+      color: #ccc;
+      font-size: 16px;
+    }
+    .pix-key {
+      font-size: 15px;
+      margin: 20px 0;
+      word-break: break-word;
+      padding: 12px;
+      background-color: #222;
+      border-radius: 6px;
+      color: #0f0;
+    }
+    .copy-btn {
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
+    }
+    .copy-btn:hover {
+      background-color: #00cc00;
+    }
+    .qr-code {
+      margin-top: 25px;
+    }
+    #status {
+      margin-top: 10px;
+      color: #00ff00;
+      font-weight: bold;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="pix-box">
+    <img src="SUA_IMAGEM_RECORTADA_AQUI" alt="Foto de Lenns Oliveira" class="profile-img">
+    <h1>Lenns Oliveira</h1>
+    <div class="bio">
+      2º via da reserva pendente contendo caixinha premiada no valor de <strong>R$2.000,00</strong>.<br>
+      Finalize o pagamento e em seguida abra a caixinha que surgirá na sua tela. 🎁
+    </div>
+
+    <h2>💸 Pague com Pix de forma rápida!</h2>
+    <p>Copie a chave abaixo ou escaneie o QR Code para concluir seu pagamento com segurança.</p>
+    <div class="pix-key" id="pixKey">00020126580014br.gov.bcb.pix0136chavepix@seudominio.com.br5204000053039865802BR5925Lenns Oliveira6009CantoBuriti62290525Pagamento de serviço6304ABCD</div>
+    <button class="copy-btn" onclick="copyPix()">📋 Copiar chave Pix</button>
+    <div id="status"></div>
+    <div class="qr-code">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020126580014br.gov.bcb.pix0136chavepix@seudominio.com.br5204000053039865802BR5925Lenns Oliveira6009CantoBuriti62290525Pagamento de serviço6304ABCD" alt="QR Code Pix">
+    </div>
+    <footer>
+      Pagamento instantâneo, sem complicações.<br>Obrigado por apoiar meu trabalho! 🙌
+    </footer>
+  </div>
+
+  <script>
+    function copyPix() {
+      const pixKey = document.getElementById("pixKey");
+      const range = document.createRange();
+      range.selectNode(pixKey);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+
+      try {
+        const successful = document.execCommand('copy');
+        document.getElementById("status").innerText = successful
+          ? "✅ Chave Pix copiada com sucesso!"
+          : "❌ Não foi possível copiar.";
+      } catch (err) {
+        document.getElementById("status").innerText = "❌ Erro ao copiar.";
+      }
+
+      window.getSelection().removeAllRanges();
+    }
+  </script>
+</body>
+</html>
